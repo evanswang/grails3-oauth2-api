@@ -67,65 +67,48 @@ grails:
 hibernate:
     cache:
         queries: false
-        region:
-            factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+        use_second_level_cache: true
+        use_query_cache: false
+        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 ---
 dataSource:
     pooled: true
     jmxExport: true
-    driverClassName: org.postgresql.Driver
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
 
 environments:
     development:
         grails:
             serverURL: http://localhost:8080
         dataSource:
-            driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQL9Dialect
-            dbCreate: none
-            url: jdbc:postgresql://localhost:5432/demo_dev
-            username: demo_dev
-            password:
+            dbCreate: create-drop
+            url: jdbc:oracle:thin:@//ocs28-scan.internal.sanger.ac.uk:1521/cost
+            driverClassName: oracle.jdbc.OracleDriver
+            username: "cosmic_download"
+            password: "cosmic1234"
+        dataSourceOracle:
+            dbCreate: validate
+            url: jdbc:oracle:thin:@//ocs27-scan.internal.sanger.ac.uk:1521/cosn
+            driverClassName: oracle.jdbc.OracleDriver
+            username: "cosmic_rest"
+            password: "cosmic2017"
     test:
         grails:
             serverURL: http://localhost:8080
         dataSource:
-            driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQL9Dialect
-            dbCreate: none
-            url: jdbc:postgresql://localhost:5432/demo_test
-            username: demo_test
-            password:
+            dbCreate: create-drop
+            url: jdbc:oracle:thin:@//ocs28-scan.internal.sanger.ac.uk:1521/cost
+            driverClassName: oracle.jdbc.OracleDriver
+            username: "cosmic_download"
+            password: "cosmic1234"
     production:
         grails:
             serverURL: http://localhost:8080
         dataSource:
-            driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQL9Dialect
-            dbCreate: none
-            url: jdbc:postgresql://localhost:5432/demo_prod
-            username: demo_prod
-            password:
-            properties:
-                jmxEnabled: true
-                initialSize: 5
-                maxActive: 50
-                minIdle: 5
-                maxIdle: 25
-                maxWait: 10000
-                maxAge: 600000
-                timeBetweenEvictionRunsMillis: 5000
-                minEvictableIdleTimeMillis: 60000
-                validationQuery: SELECT 1
-                validationQueryTimeout: 3
-                validationInterval: 15000
-                testOnBorrow: true
-                testWhileIdle: true
-                testOnReturn: false
-                jdbcInterceptors: ConnectionState
-                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
----
-grails:
-    plugin:
-        databasemigration:
-            updateOnStart: true
+            dbCreate: create-drop
+            url: jdbc:oracle:thin:@//ocs28-scan.internal.sanger.ac.uk:1521/cost
+            driverClassName: oracle.jdbc.OracleDriver
+            username: "cosmic_download"
+            password: "cosmic1234"

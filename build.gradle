@@ -79,6 +79,9 @@ dependencies {
     runtime "org.postgresql:postgresql:9.3-1101-jdbc41"
     runtime 'org.grails.plugins:database-migration:2.0.0.RC1'
 
+    runtime "com.oracle:ojdbc7:12.1.0.2.0"
+
+
     compile('org.grails:grails-datastore-rest-client:4.0.0.RELEASE') {
         exclude group: 'javax.servlet', module: 'javax.servlet-api'
         exclude group: 'commons-codec', module: 'commons-codec'
